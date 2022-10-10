@@ -1,5 +1,30 @@
 .App {
   text-align: center;
+  background-color: #0d1116;
+}
+
+.faucet {
+  float: left;
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.faucet-input {
+  height: 25px;
+  width: 300px;
+}
+
+.sub-text {
+  font-size: 25px;
+  color: white;
+}
+
+.faucet-button {
+  background: -webkit-linear-gradient(left, #a200d6, #ff6fdf);
+  animation: gradient-animation 4s ease infinite;
+  margin-right: 15px;
+  height: 25px;
+  width: 200px;
 }
 
 .App-logo {
@@ -14,7 +39,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
