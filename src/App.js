@@ -12,17 +12,19 @@ function App() {
   const CONTRACT_ADDRESS = '0xba4A2125d055Ce33315B83e125CA791da052A6B8';
 
   const handleAddress = (event) => {
+    // we already know who message sender is? functionality to send to other wallet? i guess...
     setAddress(event.target.value); 
   }
 
-  const requestFunds = () => {
+  const requestFunds = async () => {
     try {
       const { ethereum } = window;
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, faucetABI, signer);
-        connectedContract.withdraw();
+        setAddress(null);
+        await connectedContract.withdraw();
         setLoading(true);
         connectedContract.on("LogSender", (sender) => {
           setLoading(false);
