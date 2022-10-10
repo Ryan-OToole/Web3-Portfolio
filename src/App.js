@@ -3,10 +3,12 @@ import './App.css';
 import { ethers } from "ethers";
 import { useState } from "react";
 import faucetABI from './faucet';
+import LoadingIndicator from './LoadingIndicator/index.js';
 
 function App() {
 
   const [address, setAddress] = useState(null);
+  const [loading, setLoading] = useState(false);
   const CONTRACT_ADDRESS = '0xba4A2125d055Ce33315B83e125CA791da052A6B8';
 
   const handleAddress = (event) => {
@@ -21,7 +23,9 @@ function App() {
         const signer = provider.getSigner();
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, faucetABI, signer);
         connectedContract.withdraw();
+        setLoading(true);
         connectedContract.on("LogSender", (sender) => {
+          setLoading(false);
           console.log('sender', sender);
           alert(`Your funds are on their way. Once the block is mined (about 1 minute) you can view the transaction here https://goerli.etherscan.io/address/${sender}'`);
         })
@@ -40,6 +44,9 @@ function App() {
         <br />
         <br />
         <button className="faucet-button" onClick={requestFunds}>Request .1 GoerliETH</button>
+        {loading && (
+          <LoadingIndicator />
+        )}
       </div>
       <header className="App-header">
         <img src={web3} className="App-logo" alt="logo" />
