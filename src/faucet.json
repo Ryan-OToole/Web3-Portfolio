@@ -1,5 +1,18 @@
 [
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "LogSender",
+		"type": "event"
+	},
+	{
 		"stateMutability": "payable",
 		"type": "receive"
 	},

@@ -9,7 +9,7 @@ function App() {
 
   const [address, setAddress] = useState(null);
   const [loading, setLoading] = useState(false);
-  const CONTRACT_ADDRESS = '0xba4A2125d055Ce33315B83e125CA791da052A6B8';
+  const CONTRACT_ADDRESS = '0xDFdA80DcCD035b6d29e82515e2385FE51Fd6f5B8';
 
   const handleAddress = (event) => {
     // we already know who message sender is? functionality to send to other wallet? i guess...
@@ -26,9 +26,10 @@ function App() {
         setAddress(null);
         await connectedContract.withdraw();
         setLoading(true);
-        connectedContract.on("LogSender", (sender) => {
+        connectedContract.on("LogSender", (sender, msgsender) => {
           setLoading(false);
           console.log('sender', sender);
+          console.log('msgsender', msgsender);
           alert(`Your funds are on their way. Once the block is mined (about 1 minute) you can view the transaction here https://goerli.etherscan.io/address/${sender}'`);
         })
     }} catch (error) {
