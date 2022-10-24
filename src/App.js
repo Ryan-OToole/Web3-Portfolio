@@ -2,14 +2,14 @@ import web3 from './web3.png';
 import './App.css';
 import { ethers } from "ethers";
 import { useState } from "react";
-import faucetABI from './faucet';
+import faucet from './faucet';
 import LoadingIndicator from './LoadingIndicator/index.js';
 
 function App() {
 
   const [address, setAddress] = useState(null);
   const [loading, setLoading] = useState(false);
-  const CONTRACT_ADDRESS = '0xDFdA80DcCD035b6d29e82515e2385FE51Fd6f5B8';
+  const CONTRACT_ADDRESS = '0x53D27A9447f74Cf5E09111BDA3B4aD0C8Eb01D5E';
 
   const handleAddress = (event) => {
     // we already know who message sender is? functionality to send to other wallet? i guess...
@@ -17,20 +17,23 @@ function App() {
   }
 
   const requestFunds = async () => {
+    console.log('initiate requestFunds');
     try {
       const { ethereum } = window;
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
-        const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, faucetABI, signer);
-        setAddress(null);
-        await connectedContract.withdraw();
+        const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, faucet.abi, signer);
+        if (address.length === 42) {
+          await connectedContract.withdraw(address);
+        }
         setLoading(true);
+        setAddress(null);
         connectedContract.on("LogSender", (sender, msgsender) => {
           setLoading(false);
           console.log('sender', sender);
           console.log('msgsender', msgsender);
-          alert(`Your funds are on their way. Once the block is mined (about 1 minute) you can view the transaction here https://goerli.etherscan.io/address/${sender}'`);
+          alert(`Your funds are on their way. Once the block is mined (about 1 minute) you can view the transaction here https://goerli.etherscan.io/address/${sender}`);
         })
     }} catch (error) {
         console.log('error:', error);
@@ -47,6 +50,14 @@ function App() {
         <br />
         <br />
         <button className="faucet-button" onClick={requestFunds}>Request .1 GoerliETH</button>
+        <a
+          className="App-link"
+          href="https://goerlifaucet.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        No GoerliETH to cover the gas fee? No problem just get some here to get started...
+        </a>
         {loading && (
           <LoadingIndicator />
         )}
