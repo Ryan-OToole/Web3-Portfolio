@@ -9,7 +9,7 @@ function App() {
 
   const [address, setAddress] = useState(null);
   const [loading, setLoading] = useState(false);
-  const CONTRACT_ADDRESS = '0x53D27A9447f74Cf5E09111BDA3B4aD0C8Eb01D5E';
+  const CONTRACT_ADDRESS = '0x4E701855a625c46EaD75016F8187A49cC2d985e4';
 
   const handleAddress = (event) => {
     // we already know who message sender is? functionality to send to other wallet? i guess...
