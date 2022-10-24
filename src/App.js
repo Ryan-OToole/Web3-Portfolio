@@ -27,14 +27,14 @@ function App() {
         if (address.length === 42) {
           await connectedContract.withdraw(address);
         }
-        setLoading(true);
-        setAddress(null);
-        connectedContract.on("LogSender", (sender, msgsender) => {
-          setLoading(false);
-          console.log('sender', sender);
-          console.log('msgsender', msgsender);
-          alert(`Your funds are on their way. Once the block is mined (about 1 minute) you can view the transaction here https://goerli.etherscan.io/address/${sender}`);
-        })
+        // setLoading(true);
+        // setAddress(null);
+        // connectedContract.on("LogSender", (sender, msgsender) => {
+        //   setLoading(false);
+        //   console.log('sender', sender);
+        //   console.log('msgsender', msgsender);
+        //   alert(`Your funds are on their way. Once the block is mined (about 1 minute) you can view the transaction here https://goerli.etherscan.io/address/${sender}`);
+        // })
     }} catch (error) {
         console.log('error:', error);
       }
