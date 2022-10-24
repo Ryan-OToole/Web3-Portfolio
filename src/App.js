@@ -24,9 +24,10 @@ function App() {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, faucet.abi, signer);
-        if (address.length === 42) {
-          await connectedContract.withdraw(address);
-        }
+        await connectedContract.withdraw(address);
+        // if (address.length === 42) {
+        //   await connectedContract.withdraw(address);
+        // }
         // setLoading(true);
         // setAddress(null);
         // connectedContract.on("LogSender", (sender, msgsender) => {
