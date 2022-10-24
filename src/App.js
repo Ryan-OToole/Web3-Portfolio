@@ -45,15 +45,6 @@ function App() {
   return (
     <div className="App">
       <div className="faucet">
-        <div className="sub-text">Goerli Faucet </div>
-        <div className="sub-text">Enter Your MetaMask address</div>
-        <input className="faucet-input" onChange={handleAddress}></input>
-        <br />
-        <br />
-        <button className="faucet-button" onClick={requestFunds}>Request .1 GoerliETH</button>
-        {loading && (
-          <LoadingIndicator />
-        )}
         <div className="sub-text">
           <a
             className="App-link"
@@ -61,9 +52,9 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-          No GoerliETH to cover the gas fee? No problem just get some here to get started...
+          No GoerliETH? No problem! Just get some here to get started...
           </a>
-          </div>
+        </div>
       </div>
       <header className="App-header">
         <img src={web3} className="App-logo" alt="logo" />
