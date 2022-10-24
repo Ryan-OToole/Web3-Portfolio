@@ -20,7 +20,7 @@
 }
 
 .faucet-button {
-  background: -webkit-linear-gradient(left, #a200d6, #ff6fdf);
+  background: #ff6fdf;
   animation: gradient-animation 4s ease infinite;
   margin-right: 15px;
   height: 25px;

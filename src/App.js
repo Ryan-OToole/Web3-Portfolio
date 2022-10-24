@@ -50,17 +50,19 @@ function App() {
         <br />
         <br />
         <button className="faucet-button" onClick={requestFunds}>Request .1 GoerliETH</button>
-        <a
-          className="App-link"
-          href="https://goerlifaucet.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        No GoerliETH to cover the gas fee? No problem just get some here to get started...
-        </a>
         {loading && (
           <LoadingIndicator />
         )}
+        <div className="sub-text">
+          <a
+            className="App-link"
+            href="https://goerlifaucet.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          No GoerliETH to cover the gas fee? No problem just get some here to get started...
+          </a>
+          </div>
       </div>
       <header className="App-header">
         <img src={web3} className="App-logo" alt="logo" />
